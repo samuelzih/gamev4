@@ -1,0 +1,70 @@
+<%- include('../partials/head', {title :'All Games | Card Game'}) %>
+<div id="gameList">
+    <div class="container">
+        <div class="gameWrapper padding">
+            <div class="heading py-2 d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="text-muted h6 mb-2"><%=res.data[0]?.school_name %></div>
+                    <h3 class="text-highlight mb-0">Top Games</h3>
+                </div>
+                <% if(user) { %>
+                <div class="d-flex align-items-center">
+                    <div class="user d-inline-block me-2">
+                        <%=user?.first_name %> <%=user?.last_name %>
+                        <span class="small d-block"><%=user?.email %></span>
+                    </div>
+                    <a href="/logout" class="back">
+                        <i data-feather="log-out" class="me-2"></i> Logout
+                    </a>
+                </div>
+                <% } else { %>
+                <a href="/logout" class="back">
+                    <i data-feather="arrow-left" class="me-2"></i> Back
+                </a>
+                <% } %>
+            </div>
+            <div class="row mt-3">
+                <%  var games = res?.data; for(var i=0; i < games?.length; i++) {%>
+                <div class="col-md-2">
+                    <div class="list-item mb-3">
+                        <div class="media">
+                            <%if (games[i].thumbnail) { %>
+                            <a href="javascript:void(0)" class="media-content"
+                                style="background-image: url('<%=games[i].thumbnail%>');"></a>
+                            <% } else { %>
+                            <a href="javascript:void(0)" class="media-content"
+                                style="background-image: url('http://flatfull.com/themes/basik/assets/img/c1.jpg');"></a>
+                            <% } %>
+                            <% if(user) { %>
+                            <a class="media-action" href="/games/<%=games[i]?.slug%>/host">
+                                <button class="card-play" tabindex="0"></button>
+                            </a>
+                            <% } else { %>
+                            <a class="media-action" href="/games/<%=games[i]?.slug%>">
+                                <button class="card-play" tabindex="0"></button>
+                            </a>
+                            <% } %>
+                        </div>
+                        <div class="list-content text-center">
+                            <div class="list-body">
+                                <% if(user) { %>
+                                    <a href="/games/<%=games[i]?.slug%>/host" class="list-title title ajax h-1x text-capitalize"><%=games[i]?.name%></a>
+                                <% } else { %>
+                                    <a href="/games/<%=games[i]?.slug%>" class="list-title title ajax h-1x text-capitalize"><%=games[i]?.name%></a>
+                                <% } %>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
+<%- include('../partials/footer') %>

@@ -1,0 +1,245 @@
+<%- include('../partials/head', {title :'Multiply Player'}) %>
+<div id="gameList" class="overflow-hidden h-100">
+    <div class="container h-100 host-container">
+        <div class="gameWrapper padding h-100">
+            <div id="multipleBoard" class="multipleBoard h-100">
+                <div class="full-grid" id="data-bs-parent">
+                    <!-- input form start -->
+                    <div class="from" id="loginForm">
+                        <form class="nickname collapse <%if(!roomId) { %> show active <% } %>" id="nickname"
+                            data-bs-parent="#data-bs-parent">
+                            <input type="hidden" name="role" id="role" value="Host">
+                            <input id="gameSlug" name="gameSlug" type="hidden" value="<%=gameSlug%>" />
+                            <div class="form-group mb-0 position-relative">
+                                <label for="hostName" class="single--label">Your Name:</label>
+                                <input id="hostName" name="playerName" type="text" class="single--input" />
+                            </div>
+                            <button class="game-button secondaryBtn submit_btn loading" disabled type="submit"
+                                id="btnStart">
+                                <span>Start</span>
+                                <div class="spinner-border" role="status"></div>
+                            </button>
+                            <button class="game-button primary mt-5" data-bs-toggle="collapse" data-bs-parent="true"
+                                data-bs-target="#joinRoom" type="button">Join Room</button>
+
+                        </form>
+
+                        <form class="nickname collapse <%if(roomId) { %> show active <%}%>" id="joinRoom" data-bs-parent="#data-bs-parent">
+                                <input type="hidden" name="role" id="role" value="Player">
+                                <input id="gameJoinSlug" name="gameSlug" type="hidden" value="<%=gameSlug%>" />
+                        <div class="form-group mb-0 position-relative">
+                            <label for="roomID" class="single--label">Room ID:</label>
+                            <%if(roomId) { %>
+                            <input id="roomID" name="gameId" type="text" class="single--input mb-n15"
+                                value="<%=roomId%>" readonly required />
+                            <% } else { %>
+                            <input id="roomID" type="text" class="single--input mb-n15" required />
+                            <% } %>
+                        </div>
+                        <div class="form-group mb-0 position-relative">
+                            <label for="inputPlayerName" class="single--label">Your Name:</label>
+                            <input id="inputPlayerName" name="playerName" type="text" class="single--input" />
+                        </div>
+                        <button class="game-button secondaryBtn submit_btn loading" disabled type="submit"
+                            id="joinRoomBtn">
+                            <span>Join Room</span>
+                            <div class="spinner-border" role="status"></div>
+                        </button>
+                        <%if(!roomId) { %>
+                        <button class="game-button primary mt-5" data-bs-toggle="collapse" data-bs-parent="true"
+                            data-bs-target="#nickname" type="button">New Game</button>
+                        <% } %>
+                        </form>
+                    </div>
+                    <!-- input form start -->
+                    <!-- waiting room -->
+                    <div class="how-to-win text-center collapse" id="waitingLobby">
+                        <div class="Lobby-share mt-2">
+                            <p class="mb-0"><b>waiting for other players..</b></p>
+                            <div class="roomId roomShare d-flex justify-content-center align-items-center px-3 w-75 mx-auto"
+                                id="roomShare">
+                                <span id="roomNumber" class="winInfo__h3">235257</span>
+                                <img id="share" class="share" src="/assets/img/share-white.svg">
+                            </div>
+                        </div>
+                        <div class="Lobby">
+                            <div class="chakra-progress">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="42" stroke-width="10px" class="chakra-progress__track">
+                                    </circle>
+                                    <circle cx="50" cy="50" r="42" stroke-width="10px" stroke-dasharray="264"
+                                        stroke-dashoffset="0" class="chakra-progress__indicator"></circle>
+                                </svg>
+                                <div class="chakra-progress__counter">
+                                    <span class="Lobby_progress_txt">0</span>/5
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <a class="me-2 btn btn-dark shadow rounded-2" href="/games/<%=gameSlug%>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-double-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg>
+                                </a>
+                                <button type="button" disabled
+                                    class="me-2 btn btn-success fw-bold text-uppercase shadow w-75 rounded-2"
+                                    id="hostStartBtn">Start</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- winning pattern start -->
+                    <!-- waiting room -->
+                    <div class="how-to-win text-center collapse" id="waitingPlLobby">
+                        <div class="Lobby-share mt-2">
+                            <p class="mb-0"><b>waiting...</b></p>
+                        </div>
+                        <div class="Lobby">
+                            <div class="chakra-progress">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="42" stroke-width="10px" class="chakra-progress__track">
+                                    </circle>
+                                    <circle cx="50" cy="50" r="42" stroke-width="10px" stroke-dasharray="264"
+                                        stroke-dashoffset="0" class="chakra-progress__indicator"></circle>
+                                </svg>
+                                <div class="chakra-progress__counter">
+                                    <span class="Lobby_progress_txt">1</span>/5
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                    <!-- winning pattern start -->
+                    <div class="how-to-win text-center collapse" id="how_to_win">
+                        <h6>How to Win</h6>
+                        <div class="winPattern mb-2 d-flex align-items-center">
+
+                        </div>
+                        <p class="patternName mb-0">Inside or Outside</p>
+                    </div>
+                    <!-- winning pattern end -->
+
+                    <div class="row game-board collapse" id="gameBoard">
+                        <aside class="col d-flex flex-column left">
+                            <div class="heading pb-2 mb-auto ml-10">
+                                <div>
+                                    <h3 class="gameName text-highlight mb-0 text-capitalize">
+                                        <%=game_name%>
+                                    </h3>
+                                    <div class="schoolName text-muted h6 fw-bold mt-1">
+                                        <%=org_name%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="how-to-win text-center">
+                                <h6>How to Win</h6>
+                                <div class="winPattern mb-2 d-flex align-items-center">
+                                    <img src="/assets/img/wincon3.svg" alt="" srcset="">
+                                </div>
+                                <p class="patternName mb-0">Inside or Outside</p>
+                            </div>
+                            <div class="how-to-win text-center mt-auto">
+                                <h6>Oppenents</h6>
+                                <div class="list mb-2 d-flex flex-wrap mulplayerGraph" id="playerGraph">
+                                </div>
+                            </div>
+                        </aside>
+                        <div class="col-md-5 mx-auto">
+                            <div class="board" id="board">
+
+                            </div>
+                        </div>
+                        <div class="col right d-flex flex-column">
+                            <div class="heading pb-2" id="heading">
+                                <div>
+                                    <div class="text-muted h6 fw-bold mb-2">
+                                        Hi,
+                                    </div>
+                                    <h3 class="userName text-highlight mb-0 text-capitalize">
+                                        Sudhanshu
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="my-auto">
+                                <div class="how-to-win text-center suffleCard" id="suffleCard">
+                                    <div class="cardImg d-flex align-items-center"
+                                        style="background-image: url('/assets/img/G.png');">
+                                    </div>
+                                </div>
+                                <div class="shuffle_progress">
+                                    <div></div>
+                                </div>
+                            </div>
+
+                            <button id="loteria" class="game-button secondaryBtn mb-2" type="button">Loteria</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- success : "bg-success", danger : "bg-danger", warning : "bg-danger text-black" -->
+<div class="toast bg-danger position-fixed notify text-white" data-bs-animation="true" id="notify" role="alert"
+    aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Data have been loaded successfully
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+    </div>
+</div>
+<!-- notify section -->
+<div class="position-fixed top-0 w-100 h-100 left-0 align-items-center collapse justify-content-center"
+    id="gamePreloader">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end">
+            <h3>Loading Screen</h3>
+            <div class="progress-data mt-1 small"></div>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated"></div>
+        </div>
+
+    </div>
+</div>
+<!-- result -->
+<div class="modal fade winnerModal" id="winnerModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+        <div class="modal-content p-0">
+            <div class="modal-body p-0">
+                <div class="winner-wrap">                   
+                    <h2 class="winner-announcement h5 text-center px-4 mt-3"></h2>                   
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="position-fixed top-0 w-100 h-100 left-0 align-items-center d-none justify-content-center" id="gameCode">
+    <div class="alertModal--small" id="clipboard">
+        <textarea id="shareTextArea" name="shareTextArea" class="share__textarea" readonly></textarea>
+        Click to copy
+    </div>
+
+</div>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
+<%- include('../partials/footer', {multiple: true}) %>

@@ -1,0 +1,894 @@
+<%- include('../partials/head', {title :'Host'}) %>
+<div id="gameList" class="overflow-hidden">
+    <div class="container host-container">
+        <div class="gameWrapper padding">
+            <div id="hostGameBoard" class="hostGameBoard">
+                <div class="full-grid h-100">
+                    <!-- how to win -->
+                    <form class="selectWinPattern" name="setRuleForm" id="setRuleForm" method="post">
+                        <input type="hidden" name="role" value="Teacher">
+                        <input type="hidden" name="playerName" value="<%=user?.first_name %> <%=user?.last_name %>">
+                        <input id="gameSlug" name="gameSlug" type="hidden" value="<%=gameSlug%>" />
+                        <h1 class="text-center">RULE?</h1>
+                        <div class="how-to-win">
+                            <div class="row">
+                                <div class="radio col-auto">
+                                    <label for="Row">
+                                        <input type="radio" name="winCon" id="Row" class="visually-hidden"
+                                            value="Row/Column">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    height="235" preserveAspectRatio="none" width="155"
+                                                    viewBox="0 0 155 235" xml:space="preserve">
+                                                    <style type="text/css">
+                                                        .st0 {
+                                                            display: none;
+                                                            fill: #6F42C1;
+                                                        }
+
+                                                        .st1 {
+                                                            fill: #C5CAE9;
+                                                        }
+
+                                                        .st2 {
+                                                            fill: #1A237E;
+                                                        }
+                                                    </style>
+                                                    <g id="uid_21" transform="translate(0 70)">
+                                                        <path class="st0" d="M7.8,12h139.3c4.3,0,7.8,3.5,7.8,7.8v63.3c0,4.3-3.5,7.8-7.8,7.8H7.8C3.5,91,0,87.5,0,83.2V19.8
+		C0,15.5,3.5,12,7.8,12z" />
+                                                        <path class="st1" d="M10.2-9h25.6C37.6-9,39-7.6,39-5.8v48.6c0,1.8-1.4,3.2-3.2,3.2H10.2C8.4,46,7,44.6,7,42.8V-5.8
+		C7-7.6,8.4-9,10.2-9z" />
+                                                        <path class="st2"
+                                                            d="M16,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S19,31,16,26z" />
+                                                        <path class="st1" d="M47.2,49h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.2c-1.8,0-3.2-1.4-3.2-3.2V52.2
+		C44,50.4,45.4,49,47.2,49z" />
+                                                        <path class="st2"
+                                                            d="M53,84c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S56,89,53,84z" />
+                                                        <path class="st1" d="M84.2-9h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H84.2c-1.8,0-3.2-1.4-3.2-3.2V-5.8
+		C81-7.6,82.4-9,84.2-9z" />
+                                                        <path class="st2"
+                                                            d="M90,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,31,90,26z" />
+                                                        <path class="st1" d="M121.2-9h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2h-25.6c-1.8,0-3.2-1.4-3.2-3.2V-5.8
+		C118-7.6,119.4-9,121.2-9z" />
+                                                        <path class="st2"
+                                                            d="M126,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S129,31,126,26z" />
+                                                        <path class="st1" d="M47.6-67.3h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.6c-1.8,0-3.2-1.4-3.2-3.2v-48.6
+		C44.4-65.9,45.9-67.3,47.6-67.3z" />
+                                                        <path class="st2"
+                                                            d="M53.4-32.3c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.4-30.3,56.4-27.3,53.4-32.3z" />
+                                                        <path class="st1" d="M47.3-9.1H73c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.3c-1.8,0-3.2-1.4-3.2-3.2V-5.9
+		C44.1-7.7,45.6-9.1,47.3-9.1z" />
+                                                        <path class="st2"
+                                                            d="M53.1,25.9c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.1,27.9,56.1,30.9,53.1,25.9z" />
+                                                        <path class="st1" d="M47.3,106.8H73c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.3c-1.8,0-3.2-1.4-3.2-3.2V110
+		C44.1,108.3,45.6,106.8,47.3,106.8z" />
+                                                        <path class="st2"
+                                                            d="M53.1,141.8c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.1,143.8,56.1,146.8,53.1,141.8z" />
+                                                    </g>
+                                                </svg>
+
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Row / Column</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="radio col-auto">
+                                    <label for="Corner">
+                                        <input type="radio" name="winCon" id="Corner" class="visually-hidden"
+                                            value="Corner">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" height="226"
+                                                    preserveAspectRatio="none" width="155" viewBox="0 0 155 226">
+                                                    <g data-name="Layer 32" id="uid_14">
+
+                                                        <g data-name="Layer 27" id="uid_15">
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="6" y="6" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="84" y="6" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="6" y="129" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="84" y="129" />
+                                                        </g>
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="10" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 34.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76C22.87 27 24 25.8 25.21 25.8s4.1 1.17 2.93 4.1A14.67 14.67 0 0125.8 34c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="10" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 34.58A3.34 3.34 0 0150 29.89a4.57 4.57 0 002.34-1.76C53 27 54.13 25.8 55.3 25.8s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.26 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="54.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 78.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="54.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 78.91A3.34 3.34 0 0150 74.23a4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="9" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 33.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="9" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 33.58a3.34 3.34 0 011.14-4.69 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.76-5.24 3.51-7 .59z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="53.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 77.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="53.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 77.91a3.34 3.34 0 011.14-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 157.58a3.34 3.34 0 011.14-4.69 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.76-5.24 3.51-7 .59z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 201.91a3.34 3.34 0 011.14-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.5-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.27 3.5-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.27 3.51-7.03.58z" />
+                                                    </g>
+
+                                                </svg>
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Corner</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio col-auto">
+                                    <label for="Center">
+                                        <input type="radio" name="winCon" id="Center" class="visually-hidden"
+                                            value="Center">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" height="226"
+                                                    preserveAspectRatio="none" width="155">
+                                                    <g data-name="Layer 31" id="uid_19">
+                                                        <rect fill="#4f307a" height="108" rx="5.67" ry="5.67" width="72"
+                                                            x="41" y="59" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="81.38" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M91.24 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="43.19" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M53 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6S55 34.89 53 31.6z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="120.57" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.43 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="81.38" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M91.24 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="43.19" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M53 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.89 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="120.57" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.43 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="61" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 88.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="119" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 146.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="121" y="61" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.86 88.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="121" y="119" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.86 146.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="46" y="65" />
+                                                        <path fill="#1a237e"
+                                                            d="M55.86 92.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="46" y="114" />
+                                                        <path fill="#1a237e"
+                                                            d="M55.86 141.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="80" y="65" />
+                                                        <path fill="#1a237e"
+                                                            d="M89.91 92.66c-2-3.26 1.25-5.27 1.25-5.27a5.13 5.13 0 002.61-2c.64-1.32 1.94-2.65 3.25-2.67s4.62 1.26 3.34 4.56c-.63 2-1.28 2.64-2.57 4.63s-5.87 4.01-7.88.75z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="80" y="114" />
+                                                        <path fill="#1a237e"
+                                                            d="M89.86 141.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Center</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio col-auto">
+                                    <label for="Diagonal">
+                                        <input type="radio" name="winCon" id="Diagonal" class="visually-hidden"
+                                            value="Diagonal">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 155 226" height="226" preserveAspectRatio="none"
+                                                    width="155" style="enable-background:new 0 0 155 226;"
+                                                    xml:space="preserve">
+                                                    <style type="text/css">
+                                                        .st0 {
+                                                            fill: #6F42C1;
+                                                        }
+
+                                                        .st1 {
+                                                            fill: #C5CAE9;
+                                                        }
+
+                                                        .st2 {
+                                                            fill: #1A237E;
+                                                        }
+                                                    </style>
+                                                    <g id="uid_19">
+                                                        <path class="st0"
+                                                            d="M6.6,0h141.8c3.7,0,6.6,3,6.6,6.6v212.8c0,3.7-3,6.6-6.6,6.6H6.6C3,226,0,223,0,219.4V6.6C0,3,3,0,6.6,0z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M120.7,6h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5h-26.2c-1.9,0-3.5-1.6-3.5-3.5V9.5
+		C117.2,7.6,118.8,6,120.7,6z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M45.3,60.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H45.3c-1.9,0-3.5-1.6-3.5-3.5V63.8
+		C41.8,61.9,43.4,60.3,45.3,60.3z" />
+                                                        <path class="st1" d="M8.3,5.6h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H8.3c-1.9,0-3.5-1.6-3.5-3.5V9.1
+		C4.8,7.1,6.4,5.6,8.3,5.6z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M45.3,116.1h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H45.3c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C41.8,117.7,43.4,116.1,45.3,116.1z" />
+                                                        <path class="st1" d="M8.3,169.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H8.3c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C4.8,170.9,6.4,169.3,8.3,169.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M84.7,60.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H84.7c-1.9,0-3.5-1.6-3.5-3.5V63.8
+		C81.2,61.9,82.8,60.3,84.7,60.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M84.7,116.1h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H84.7c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C81.2,117.7,82.8,116.1,84.7,116.1z" />
+                                                        <path class="st1" d="M121.7,169.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5h-26.2c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C118.2,170.9,119.8,169.3,121.7,169.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                    </g>
+                                                    <path class="st2"
+                                                        d="M13.6,38.1c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S16.6,43.1,13.6,38.1z" />
+                                                    <path class="st2"
+                                                        d="M127,38.1c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S130,43.1,127,38.1z" />
+                                                    <path class="st2"
+                                                        d="M129.2,200.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S132.2,205.7,129.2,200.7z" />
+                                                    <path class="st2"
+                                                        d="M13.7,200.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S16.7,205.7,13.7,200.7z" />
+                                                    <path class="st2"
+                                                        d="M50.7,91.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7C60.7,93.7,53.7,96.7,50.7,91.7z" />
+                                                    <path class="st2"
+                                                        d="M90,91.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,96.7,90,91.7z" />
+                                                    <path class="st2"
+                                                        d="M90,147.6c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,152.6,90,147.6z" />
+                                                    <path class="st2"
+                                                        d="M50.7,147.6c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7C60.7,149.6,53.7,152.6,50.7,147.6z" />
+                                                </svg>
+
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Diagonal</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mx-auto mt-3 text-center d-flex">
+                                <a href="/games/"
+                                    class="game-button secondaryBtn opacity-75 me-4 text-decoration-none">Back</a>
+                                <button id="setRule" class="game-button primary submit_btn loading" disabled type="submit">
+                                    <span>Next</span>
+                                    <div class="spinner-border" role="status"></div>
+                                </button>
+
+                            </div>
+                        </div>
+                    </form>
+                    <!-- -->
+                    <div class="row game-board hostBoard d-none" id="gameBoard">
+                        <aside class="col d-flex flex-column left">
+                            <div class="heading pb-2">
+                                <div>
+                                    <div class="text-muted h6 fw-bold mb-2">
+                                        Hi, <span class="userName">
+                                            <%=user?.first_name %>
+                                            <%=user?.last_name %>
+                                        </span>
+                                    </div>
+                                    <h3 class="gameName text-highlight mb-0 text-capitalize">
+                                        <%=game_name%>
+                                    </h3>
+                                    <div class="schoolName text-muted h6 fw-bold mt-1">
+                                        <%=org_name%>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mid-section">
+                                <div class="hostConsole">
+                                    <div class="currentCardWrap">
+                                        <img src="/assets/img/G.png" id="currentCard">
+                                    </div>
+                                    <div class="text-center action-button" id="start">
+                                        <button type="button" class="bubbly-button" disabled id="hostStartGame">
+                                            <span>Start</span>
+                                            <div class="spinner-border" role="status"></div>
+                                        </button>
+                                    </div>
+                                    <div class="text-center action-button drawBtn collapse" id="drawBtn">
+                                        <button type="button" class="bubbly-button" disabled id="drawCard">
+                                            <span>Draw</span>
+                                            <div class="spinner-border" role="status"></div>
+                                        </button>
+                                    </div>
+                                    <div class="text-center action-button drawBtn collapse" id="finished">
+                                        <button type="button" class="bubbly-button" disabled>
+                                            <span>Finished !</span>
+                                        </button>
+                                    </div>
+                                    <!--  -->
+
+
+                                </div>
+
+                                <div class="mt-auto ms-0">
+                                    <div class="how-to-win text-center">
+                                        <div class="roomShare" id="roomShare">
+                                            Room: <br><span id="roomNumber" class="winInfo__h3">235257</span>
+                                            <img id="share" class="share" src="/assets/img/share-white.svg">
+                                        </div>
+                                        <hr>
+                                        <h6>How to Win</h6>
+                                        <div class="winPattern mb-2 d-flex align-items-center">
+                                            <img src="/assets/img/wincon3.svg" alt="" srcset="">
+                                        </div>
+                                        <p class="patternName mb-0">Inside or Outside</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <a href="/logout" class="back mt-4">
+                                    <i data-feather="log-out" class="me-2"></i> Logout
+                                </a>
+                            </div>
+
+
+                        </aside>
+                        <div class="col mx-auto">
+                            <div class="board host" id="board">
+                                <div class="how-to-win mt-auto oppenents">
+                                    <h6>Oppenents</h6>
+                                    <span id="invite" class="invite"><span class="invite__anchor">Invite</span>
+                                        players
+                                        to get started</span>
+                                    <div class="list d-flex flex-wrap" id="playerGraph"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="position-fixed top-0 w-100 h-100 left-0 align-items-center d-none justify-content-center" id="gameCode">
+    <div class="alertModal--small" id="clipboard">
+        <textarea id="shareTextArea" name="shareTextArea" class="share__textarea" readonly></textarea>
+        Click to copy
+    </div>
+
+</div>
+<div class="position-fixed top-0 w-100 h-100 left-0 align-items-center collapse justify-content-center"
+    id="gamePreloader">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end">
+            <h3>Loading Screen</h3>
+            <div class="progress-data mt-1 small"></div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="gamePreloaderBar"></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade winnerModal" id="winnerModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-0">
+            <div class="modal-body p-0">
+                    <h2 class="winner-announcement h5 text-center px-4 mt-3"></h2>
+                    <hr>
+                    <h1 class="h4 text-center mt-3 mb-0">Loteria Ranking</h1>
+
+                    <div class="winner-wrap classRank px-4">
+                        <table class="table table-sm table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="winner-wrap">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+                    <div class="text-center mb-2">
+                        <div class="row g-0 my-4 mx-4 justify-content-between">
+                            <div class="col-6">
+                                <button id="newGame" class="game-button secondaryBtn opacity-75 me-4 text-decoration-none"  type="button">New Game Room</a>
+                            </div>
+                            <div class="col-5">
+                                <button id="replay" class="game-button primary submit_btn"  type="button">New Game</a>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade winnerModal" id="newGameModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form class="replayGame" name="replayGameForm" id="replayGameForm" method="post">
+                    <div id="gamelist">
+                        <h2 class="text-center">Select New Game</h2>
+                        <div class="how-to-win d-block">
+                            <div class="row">
+                                <%  var games = gameList; for(var i=0; i < games?.length; i++) {%>
+                                <div class="col-md-3 radio">
+                                    <label class="list-item mb-3" for="<%=games[i]?.slug%>">
+                                        <input type="radio" name="gameSlug" id="<%=games[i]?.slug%>" class="visually-hidden" value="<%=games[i]?.slug%>">
+                                        <div class="label-container">
+                                            <div class="media">                                            
+                                                <div class="media-content" style="background-image: url('<%=games[i].thumbnail%>');"></div>
+                                            </div>
+                                            <div class="list-content text-center">
+                                                <div class="list-body">
+                                                    <span class="list-title title ajax h-1x text-capitalize"><%=games[i]?.name%></span> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                    </label>
+                                </div>
+                                
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="row g-0">
+                            <div class="col-md-6 mx-auto mt-3 text-center">                           
+                                <button id="newGameBtn" class="game-button primary submit_btn" type="button">
+                                    <span>Next</span>
+                                    <div class="spinner-border" role="status"></div>
+                                </button>    
+                            </div>
+                        </div>
+                    </div>
+                    <div id="newGameWinCon" style="display: none;">
+                        <h1 class="text-center">RULE?</h1>
+                        <div class="how-to-win">
+                            <div class="row">
+                                <div class="radio col-auto">
+                                    <label for="Row1">
+                                        <input type="radio" name="winCron" id="Row1" class="visually-hidden"
+                                            value="Row/Column">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    height="235" preserveAspectRatio="none" width="155"
+                                                    viewBox="0 0 155 235" xml:space="preserve">
+                                                    <style type="text/css">
+                                                        .st0 {
+                                                            display: none;
+                                                            fill: #6F42C1;
+                                                        }
+
+                                                        .st1 {
+                                                            fill: #C5CAE9;
+                                                        }
+
+                                                        .st2 {
+                                                            fill: #1A237E;
+                                                        }
+                                                    </style>
+                                                    <g id="uid_21" transform="translate(0 70)">
+                                                        <path class="st0" d="M7.8,12h139.3c4.3,0,7.8,3.5,7.8,7.8v63.3c0,4.3-3.5,7.8-7.8,7.8H7.8C3.5,91,0,87.5,0,83.2V19.8
+		C0,15.5,3.5,12,7.8,12z" />
+                                                        <path class="st1" d="M10.2-9h25.6C37.6-9,39-7.6,39-5.8v48.6c0,1.8-1.4,3.2-3.2,3.2H10.2C8.4,46,7,44.6,7,42.8V-5.8
+		C7-7.6,8.4-9,10.2-9z" />
+                                                        <path class="st2"
+                                                            d="M16,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S19,31,16,26z" />
+                                                        <path class="st1" d="M47.2,49h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.2c-1.8,0-3.2-1.4-3.2-3.2V52.2
+		C44,50.4,45.4,49,47.2,49z" />
+                                                        <path class="st2"
+                                                            d="M53,84c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S56,89,53,84z" />
+                                                        <path class="st1" d="M84.2-9h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H84.2c-1.8,0-3.2-1.4-3.2-3.2V-5.8
+		C81-7.6,82.4-9,84.2-9z" />
+                                                        <path class="st2"
+                                                            d="M90,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,31,90,26z" />
+                                                        <path class="st1" d="M121.2-9h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2h-25.6c-1.8,0-3.2-1.4-3.2-3.2V-5.8
+		C118-7.6,119.4-9,121.2-9z" />
+                                                        <path class="st2"
+                                                            d="M126,26c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S129,31,126,26z" />
+                                                        <path class="st1" d="M47.6-67.3h25.6c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.6c-1.8,0-3.2-1.4-3.2-3.2v-48.6
+		C44.4-65.9,45.9-67.3,47.6-67.3z" />
+                                                        <path class="st2"
+                                                            d="M53.4-32.3c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.4-30.3,56.4-27.3,53.4-32.3z" />
+                                                        <path class="st1" d="M47.3-9.1H73c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.3c-1.8,0-3.2-1.4-3.2-3.2V-5.9
+		C44.1-7.7,45.6-9.1,47.3-9.1z" />
+                                                        <path class="st2"
+                                                            d="M53.1,25.9c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.1,27.9,56.1,30.9,53.1,25.9z" />
+                                                        <path class="st1" d="M47.3,106.8H73c1.8,0,3.2,1.4,3.2,3.2v48.6c0,1.8-1.4,3.2-3.2,3.2H47.3c-1.8,0-3.2-1.4-3.2-3.2V110
+		C44.1,108.3,45.6,106.8,47.3,106.8z" />
+                                                        <path class="st2"
+                                                            d="M53.1,141.8c-3-5,2-8,2-8s3-1,4-3s3-4,5-4c2,0,7,2,5,7c-1,3-2,4-4,7C63.1,143.8,56.1,146.8,53.1,141.8z" />
+                                                    </g>
+                                                </svg>
+
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Row / Column</p>
+                                        </div>
+                                    </label>
+                                </div>
+
+                                <div class="radio col-auto">
+                                    <label for="Corner1">
+                                        <input type="radio" name="winCron" id="Corner1" class="visually-hidden"
+                                            value="Corner">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" height="226"
+                                                    preserveAspectRatio="none" width="155" viewBox="0 0 155 226">
+                                                    <g data-name="Layer 32" id="uid_14">
+
+                                                        <g data-name="Layer 27" id="uid_15">
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="6" y="6" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="84" y="6" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="6" y="129" />
+                                                            <rect fill="#4f307a" height="93" rx="6.74" ry="6.74"
+                                                                width="65" x="84" y="129" />
+                                                        </g>
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="10" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 34.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76C22.87 27 24 25.8 25.21 25.8s4.1 1.17 2.93 4.1A14.67 14.67 0 0125.8 34c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="10" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 34.58A3.34 3.34 0 0150 29.89a4.57 4.57 0 002.34-1.76C53 27 54.13 25.8 55.3 25.8s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.26 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="54.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 78.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="54.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 78.91A3.34 3.34 0 0150 74.23a4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="9" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 33.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="9" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 33.58a3.34 3.34 0 011.14-4.69 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.76-5.24 3.51-7 .59z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="53.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 77.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="53.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 77.91a3.34 3.34 0 011.14-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="10" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M18.78 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.35 4.1c-1.17 1.75-5.27 3.5-7.02.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 157.58a3.34 3.34 0 011.14-4.69 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.76-5.24 3.51-7 .59z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="40.08" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M48.86 201.91a3.34 3.34 0 011.14-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.15 1.75-5.24 3.51-7 .58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.5-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="133" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 157.58a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.27 3.5-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="88" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M96.78 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.28 3.51-7.03.58z" />
+                                                        <rect fill="#c5cae9" height="40.96" rx="3.18" ry="3.18"
+                                                            width="26.92" x="118.08" y="177.33" />
+                                                        <path fill="#1a237e"
+                                                            d="M126.86 201.91a3.34 3.34 0 011.17-4.68 4.57 4.57 0 002.34-1.76c.59-1.17 1.76-2.34 2.93-2.34s4.1 1.17 2.93 4.1a14.67 14.67 0 01-2.34 4.1c-1.18 1.75-5.27 3.51-7.03.58z" />
+                                                    </g>
+
+                                                </svg>
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Corner</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio col-auto">
+                                    <label for="Center1">
+                                        <input type="radio" name="winCron" id="Center1" class="visually-hidden"
+                                            value="Center">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" height="226"
+                                                    preserveAspectRatio="none" width="155"  viewBox="0 0 155 235"   >
+                                                    <g data-name="Layer 31" id="uid_19">
+                                                        <rect fill="#4f307a" height="108" rx="5.67" ry="5.67" width="72"
+                                                            x="41" y="59" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="81.38" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M91.24 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="43.19" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M53 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6S55 34.89 53 31.6z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="120.57" y="4" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.43 31.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="81.38" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M91.24 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="43.19" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M53 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.89 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="120.57" y="176" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.43 203.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="61" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 88.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="4" y="119" />
+                                                        <path fill="#1a237e"
+                                                            d="M13.86 146.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="121" y="61" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.86 88.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="121" y="119" />
+                                                        <path fill="#1a237e"
+                                                            d="M130.86 146.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="46" y="65" />
+                                                        <path fill="#1a237e"
+                                                            d="M55.86 92.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="46" y="114" />
+                                                        <path fill="#1a237e"
+                                                            d="M55.86 141.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="80" y="65" />
+                                                        <path fill="#1a237e"
+                                                            d="M89.91 92.66c-2-3.26 1.25-5.27 1.25-5.27a5.13 5.13 0 002.61-2c.64-1.32 1.94-2.65 3.25-2.67s4.62 1.26 3.34 4.56c-.63 2-1.28 2.64-2.57 4.63s-5.87 4.01-7.88.75z" />
+                                                        <rect fill="#c5cae9" height="46" rx="3.18" ry="3.18"
+                                                            width="30.23" x="80" y="114" />
+                                                        <path fill="#1a237e"
+                                                            d="M89.86 141.6c-2-3.29 1.31-5.26 1.31-5.26a5.13 5.13 0 002.63-2c.66-1.31 2-2.63 3.29-2.63s4.6 1.31 3.29 4.6c-.66 2-1.31 2.63-2.63 4.6s-5.92 3.98-7.89.69z" />
+                                                    </g>
+                                                </svg>
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Center</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio col-auto">
+                                    <label for="Diagonal1">
+                                        <input type="radio" name="winCron" id="Diagonal1" class="visually-hidden"
+                                            value="Diagonal">
+                                        <div class="label-container bg-black bg-opacity-50 px-3 py-3 rounded">
+                                            <div class="winPattern mb-2 mt-2 d-flex align-items-center">
+                                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                    viewBox="0 0 155 226" height="226" preserveAspectRatio="none"
+                                                    width="155" style="enable-background:new 0 0 155 226;"
+                                                    xml:space="preserve">
+                                                    <style type="text/css">
+                                                        .st0 {
+                                                            fill: #6F42C1;
+                                                        }
+
+                                                        .st1 {
+                                                            fill: #C5CAE9;
+                                                        }
+
+                                                        .st2 {
+                                                            fill: #1A237E;
+                                                        }
+                                                    </style>
+                                                    <g id="uid_19">
+                                                        <path class="st0"
+                                                            d="M6.6,0h141.8c3.7,0,6.6,3,6.6,6.6v212.8c0,3.7-3,6.6-6.6,6.6H6.6C3,226,0,223,0,219.4V6.6C0,3,3,0,6.6,0z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M120.7,6h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5h-26.2c-1.9,0-3.5-1.6-3.5-3.5V9.5
+		C117.2,7.6,118.8,6,120.7,6z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M45.3,60.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H45.3c-1.9,0-3.5-1.6-3.5-3.5V63.8
+		C41.8,61.9,43.4,60.3,45.3,60.3z" />
+                                                        <path class="st1" d="M8.3,5.6h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H8.3c-1.9,0-3.5-1.6-3.5-3.5V9.1
+		C4.8,7.1,6.4,5.6,8.3,5.6z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M45.3,116.1h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H45.3c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C41.8,117.7,43.4,116.1,45.3,116.1z" />
+                                                        <path class="st1" d="M8.3,169.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H8.3c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C4.8,170.9,6.4,169.3,8.3,169.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M84.7,60.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H84.7c-1.9,0-3.5-1.6-3.5-3.5V63.8
+		C81.2,61.9,82.8,60.3,84.7,60.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                        <path class="st1" d="M84.7,116.1h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5H84.7c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C81.2,117.7,82.8,116.1,84.7,116.1z" />
+                                                        <path class="st1" d="M121.7,169.3h26.2c1.9,0,3.5,1.6,3.5,3.5v43.6c0,1.9-1.6,3.5-3.5,3.5h-26.2c-1.9,0-3.5-1.6-3.5-3.5v-43.6
+		C118.2,170.9,119.8,169.3,121.7,169.3z" />
+                                                        <path class="st1" d="M0,0" />
+                                                    </g>
+                                                    <path class="st2"
+                                                        d="M13.6,38.1c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S16.6,43.1,13.6,38.1z" />
+                                                    <path class="st2"
+                                                        d="M127,38.1c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S130,43.1,127,38.1z" />
+                                                    <path class="st2"
+                                                        d="M129.2,200.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S132.2,205.7,129.2,200.7z" />
+                                                    <path class="st2"
+                                                        d="M13.7,200.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S16.7,205.7,13.7,200.7z" />
+                                                    <path class="st2"
+                                                        d="M50.7,91.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7C60.7,93.7,53.7,96.7,50.7,91.7z" />
+                                                    <path class="st2"
+                                                        d="M90,91.7c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,96.7,90,91.7z" />
+                                                    <path class="st2"
+                                                        d="M90,147.6c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7S93,152.6,90,147.6z" />
+                                                    <path class="st2"
+                                                        d="M50.7,147.6c-3-5,2-8,2-8s3-1,4-3s3-4,5-4s7,2,5,7c-1,3-2,4-4,7C60.7,149.6,53.7,152.6,50.7,147.6z" />
+                                                </svg>
+
+                                            </div>
+                                            <p class="patternName mb-0 text-center">Diagonal</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mx-auto mt-3 text-center d-flex">
+                                <button id="newGameRuleBtn" class="game-button primary submit_btn" type="submit">
+                                    <span>Next</span>
+                                    <div class="spinner-border" role="status"></div>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>
+    feather.replace()
+</script>
+
+<%- include('../partials/footer', {host: true}) %>

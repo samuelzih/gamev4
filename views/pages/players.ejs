@@ -1,0 +1,151 @@
+<%- include('../partials/head', {title :'Player'}) %>
+<div id="gameList" class="overflow-hidden h-100">
+    <div class="container h-100 host-container">
+        <div class="gameWrapper padding h-100">
+            <div id="multipleBoard" class="multipleBoard h-100">
+                <div class="full-grid" id="data-bs-parent">
+                    <!-- input form start -->
+                    <div class="from" id="loginForm">
+                        <form class="nickname" id="joinRoom">
+                            <input type="hidden" name="role" id="role" value="Player">
+                            <input id="gameSlug" name="gameSlug" type="hidden" value="<%=gameSlug%>" />
+                            <div class="form-group mb-0 position-relative">
+                                <label for="gameId" class="single--label">Room ID:</label>
+                                <input id="gameId" name="gameId" type="text" class="single--input mb-n15"
+                                    value="<%=roomId%>" readonly required/>
+                               
+                            </div>
+                            <div class="form-group mb-0 position-relative">
+                                <label for="playerName" class="single--label">Your Name:</label>
+                                <input id="playerName" name="playerName" type="text" class="single--input" />
+                            </div>
+                            <button class="game-button secondaryBtn submit_btn loading" disabled type="submit" id="joinRoom"> 
+                                <span>Join Room</span>
+                                    <div class="spinner-border" role="status"></div>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- input form start -->
+                    <!-- waiting room -->
+                    <div class="row game-board collapse" id="gameBoard">
+                        <aside class="col d-flex flex-column left">
+                            <div class="heading pb-2 mb-auto ml-10">
+                                <div>
+                                    <h3 class="gameName text-highlight mb-0 text-capitalize">
+                                        <%=game_name%>
+                                    </h3>
+                                    <div class="schoolName text-muted h6 fw-bold mt-1">
+                                        <%=org_name%>
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="how-to-win text-center" id="winCon">
+                                <h6>How to Win</h6>
+                                <div class="winPattern mb-2 d-flex align-items-center">
+                                    <img src="/assets/img/wincon3.svg" alt="" srcset="">
+                                </div>
+                                <p class="patternName mb-0">Inside or Outside</p>
+                            </div>
+                        </aside>
+                        <div class="col-md-5 mx-auto">
+                            <div class="board" id="board">
+                                <table class='table'>
+                                    <% for(let i=0; i<4; i++) {%>
+                                    <tr>
+                                        <% for(let j=0; j<4; j++) {%>
+                                        <td class="matrix__cell">
+                                            <div class="game-cell">
+                                                <img src="/assets/img/back.jpg" alt="">
+                                            </div>
+                                        </td>
+                                        <% } %>
+                                    </tr>
+                                    <% } %>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col right d-flex flex-column">
+                            <div class="heading pb-2" id="heading">
+                                <div>
+                                    <div class="text-muted h6 fw-bold mb-2">
+                                        Hi,
+                                    </div>
+                                    <h3 class="userName text-highlight mb-0 text-capitalize">
+                                        Sudhanshu
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="my-auto position-relative">
+                                <div class="how-to-win text-center suffleCard" id="suffleCard">
+                                    <div class="cardImg d-flex align-items-center"
+                                        style="background-image: url('/assets/img/G.png');">
+                                    </div>
+                                </div>
+                                <button class="replay-btn" id="replay" disabled>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                                      </svg>
+                                </button>
+
+                            </div>
+
+                            <button id="loteria" class="game-button secondaryBtn mb-2" type="button"
+                                disabled>Loteria</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--  -->
+<div class="waitingForHost position-fixed w-100 h-100 align-items-center justify-content-center collapse">
+    <div>
+        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status"></div>
+        <h1 class="mt-md-4">Waiting on host...</h1>
+    </div>
+
+</div>
+<!-- notify section -->
+<div class="position-fixed top-0 w-100 h-100 left-0 align-items-center collapse justify-content-center" id="gamePreloader">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end">
+            <h3>Loading Screen</h3>
+            <div class="progress-data mt-1 small"></div>
+        </div>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="gamePreloaderBar"></div>
+        </div>
+    </div>
+</div>
+<!-- result  -->
+<div class="modal fade winnerModal" id="winnerModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered">
+      <div class="modal-content p-0">
+        <div class="modal-body p-0">
+            <h2 class="winner-announcement h5 text-center px-4 mt-3"></h2>
+            <hr>
+            <h1 class="h4 text-center mt-3 mb-0">Loteria Ranking</h1>            
+            <div class="winner-wrap classRank px-4">                  
+                <table class="table table-sm table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="winner-wrap">                        
+                    </tbody>
+                   
+                </table>
+                
+            </div>
+            
+        </div>            
+      </div>
+    </div>
+</div>
+<%- include('../partials/footer', {player: true}) %>

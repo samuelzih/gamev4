@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="150"
+    preserveAspectRatio="none" width="155" viewBox="0 0 155 150">
+    <defs xmlns="http://www.w3.org/2000/svg"><clipPath id="uid_26" transform="translate(-225.41 -629.49)"><path d="M426 680c-21-30-52-6-63 0-32 28-57 29-76 44s-45 53-18 92c30.25 43.7 84 33 128-9s50-97 29-127z" fill="none"/></clipPath></defs>
+    <g xmlns="http://www.w3.org/2000/svg" transform="scale(0.6)">
+        <circle cx="125.1" cy="125.1" fill="#3c0e04" r="125.1" />
+        <path d="M426 680c-21-30-52-6-63 0-32 28-57 29-76 44s-45 53-18 92c30.25 43.7 84 33 128-9s50-97 29-127z"
+            fill="#fffdba" transform="translate(-225.41 -629.49)" />
+        <g clip-path="url(#uid_26)">
+            <ellipse fill="#c5935b" cx="326" cy="695.5" rx="37" ry="26.5" transform="rotate(-34.23 -808.81 746.83)" />
+            <path fill="#b39f86"
+                d="M287 844s5-19 27-35 54-16 71-35 13 12-23 27-67 51-67 51zm130-184c-2.44-3.92-65.62 54.79-55 49 9.56-5.21 66.19-49.12 67-44zm2 54c7-11-30 31-69 54-22 23 22-9 35-13s34-36 34-41z"
+                transform="translate(-225.41 -629.49)" />
+            <ellipse fill="#b39f86" cx="315.3" cy="764.21" rx="8.55" ry="6.01"
+                transform="rotate(-36.66 -747.48 789.62)" />
+            <ellipse fill="#b39f86" cx="299.5" cy="796" rx="12.5" ry="10" transform="rotate(-36.66 -763.28 821.4)" />
+            <circle fill="#c5935b" cx="-225.41" cy="-629.49" />
+        </g>
+    </g>
+</svg>

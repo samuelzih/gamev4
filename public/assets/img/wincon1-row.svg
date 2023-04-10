@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="226" preserveAspectRatio="none" width="155" viewBox="0 0 155 226">
+    <g data-name="Layer 24" id="uid_21"  transform="translate(0 70)">
+        <rect fill="#6f42c1" height="79" rx="7.83" ry="7.83" width="155" />
+        <rect fill="#c5cae9" height="55" rx="3.18" ry="3.18" width="32" x="5" y="5" />
+        <path fill="#1a237e"
+            d="M14 40c-3-5 2-8 2-8s3-1 4-3 3-4 5-4 7 2 5 7c-1 3-2 4-4 7s-9 6-12 1z" />
+        <rect fill="#c5cae9" height="55" rx="3.18" ry="3.18" width="32" x="43" y="5" />
+        <path fill="#1a237e"
+            d="M52 40c-3-5 2-8 2-8s3-1 4-3 3-4 5-4 7 2 5 7c-1 3-2 4-4 7s-9 6-12 1z" />
+        <rect fill="#c5cae9" height="55" rx="3.18" ry="3.18" width="32" x="82" y="5" />
+        <path fill="#1a237e"
+            d="M91 40c-3-5 2-8 2-8s3-1 4-3 3-4 5-4 7 2 5 7c-1 3-2 4-4 7s-9 6-12 1z" />
+        <rect fill="#c5cae9" height="55" rx="3.18" ry="3.18" width="32" x="120" y="5" />
+        <path fill="#1a237e"
+            d="M128 40c-3-5 2-8 2-8s3-1 4-3 3-4 5-4 7 2 5 7c-1 3-2 4-4 7s-9 6-12 1z" />
+    </g>
+</svg>
