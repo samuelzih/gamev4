@@ -133,7 +133,7 @@ jQuery(
 		var IO = {
 			init: function () {
 				// IO.socket = io('http://ec2-35-170-246-227.compute-1.amazonaws.com:3000/');
-				IO.socket = io.connect("http://44.201.194.58:3000/");
+				IO.socket = io.connect("http://44.201.194.58:4000/");
 				IO.bindEvents();
 			},
 			bindEvents: function () {
