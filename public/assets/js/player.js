@@ -156,7 +156,7 @@ jQuery(
 		var IO = {
 			init: function () {
 				// IO.socket = io('http://ec2-35-170-246-227.compute-1.amazonaws.com:3000/');
-				IO.socket = io("http://54.146.213.208:3000/");
+				IO.socket = io("http://54.163.160.115:3000/");
 				IO.bindEvents();
 			},
 			bindEvents: function () {
