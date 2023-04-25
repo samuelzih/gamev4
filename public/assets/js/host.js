@@ -192,7 +192,6 @@ jQuery(
 			},
 
 			onNewClassGameCreated: function (data) {
-				debugger;
 				gameObject.gameId = data?.gameId;
 				gameObject.winCron = data?.winCron;
 				App.$doc.find("#roomNumber").text(data?.gameId);
