@@ -3,28 +3,28 @@
         "index": 0,
         "pattern": "wincon1",
         "value": "Row/Column",
-        "url_4": "/assets/img/wincon1.svg",
-        "url_3": "/assets/img/wincon1.svg"
+        "url_4": "/assets/img/wincon4_1.svg",
+        "url_3": "/assets/img/wincon3_1.svg"
     },
     {
         "index": 2,
         "pattern": "wincon2",
         "value": "Corner",
-        "url_4": "/assets/img/wincon3.svg",
-        "url_3": "/assets/img/wincon3.svg"
+        "url_4": "/assets/img/wincon4_3.svg",
+        "url_3": "/assets/img/wincon3_3.svg"
     },
     {
         "index": 3,
         "pattern": "wincon3",
         "value": "Center",
-        "url_4": "/assets/img/wincon4.svg",
-        "url_3": "/assets/img/wincon3.svg"
+        "url_4": "/assets/img/wincon4_4.svg",
+        "url_3": "/assets/img/wincon43_4.svg"
     },
     {
         "index": 4,
         "pattern": "wincon4",
         "value": "Diagonal",
-        "url_4": "/assets/img/wincon5.svg",
-        "url_3": "/assets/img/wincon3.svg"
+        "url_4": "/assets/img/wincon4_5.svg",
+        "url_3": "/assets/img/wincon3_5.svg"
     }
 ]

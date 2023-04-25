@@ -196,6 +196,7 @@ app.get("/games/:gameSlug/host", auth, async (req, res) => {
 			game_name: data?.name,
 			gameSlug: req.params.gameSlug,
 			gameList: gameData,
+			gameStyle: 3,
 		});
 	}
 });
