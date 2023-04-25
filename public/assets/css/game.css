@@ -733,8 +733,12 @@ button:disabled {
     border-radius: 4px;
     position: relative;
     background-color: var(--bs-secondary);
-    height: 100% !important;
+    /* height: 100% !important; */
     overflow: hidden;
+}
+
+.singleGameBoard {
+    height: 100%;
 }
 
 .game-board .board table tr td.selected .game-cell::before,
@@ -751,9 +755,11 @@ button:disabled {
     background-position: center center;
     background-repeat: no-repeat;
 }
-.game-board .mulplayerGraph .playercell.beaned::before{
+
+.game-board .mulplayerGraph .playercell.beaned::before {
     content: none;
 }
+
 .game-board .board table tr td.wrong-card .game-cell::before {
     content: "";
     background-image: url('/assets/img/wrong-card.svg');
@@ -1309,10 +1315,12 @@ button:disabled {
     right: 6px;
     transition: width 0.2s, height 0.1s;
 }
-.radio label.list-item input[type="radio"]+.label-container::before{
-   content: none;
+
+.radio label.list-item input[type="radio"]+.label-container::before {
+    content: none;
 }
-.radio label.list-item input[type="radio"]+.label-container .media{
+
+.radio label.list-item input[type="radio"]+.label-container .media {
     border: 8px solid rgba(0, 0, 0, .2);
     border-radius: 10px;
 }
@@ -1323,9 +1331,11 @@ button:disabled {
     height: 0.5rem;
     transform: rotate(135deg);
 }
-.radio label.list-item input[type="radio"]:checked+.label-container .media{
+
+.radio label.list-item input[type="radio"]:checked+.label-container .media {
     border-color: #281445;
 }
+
 .selectWinPattern .how-to-win {
     padding: 20px;
 }
@@ -1363,6 +1373,7 @@ button:disabled {
     background: #422163;
     border-radius: 5px;
 }
+
 .hostConsole .currentCardWrap img {
     max-height: 253px;
     max-width: 100%;
@@ -1372,7 +1383,7 @@ button:disabled {
 .hostConsole .bubbly-button {
     margin-top: 1rem;
     border-radius: 10px;
-    height:45px;
+    height: 45px;
     line-height: 45px;
     width: 100%;
 }
@@ -1542,7 +1553,8 @@ button:disabled {
     height: calc(100vh - (4rem + 20px));
     margin: 0;
 }
-.game-board.hostBoard .oppenents .list{    
+
+.game-board.hostBoard .oppenents .list {
     overflow-x: hidden;
     height: calc(100vh - (4rem + 90px));
     display: grid !important;
@@ -1551,30 +1563,36 @@ button:disabled {
     justify-content: space-between;
     max-height: 100%;
 }
-.game-board.hostBoard .board table{
+
+.game-board.hostBoard .board table {
     height: calc(100% - 40px);
 }
-.game-board.hostBoard .oppenents .player{
+
+.game-board.hostBoard .oppenents .player {
     flex: 0 0 100%;
     max-width: 100%;
     width: 100%;
 }
-.game-board.hostBoard .playercell{
+
+.game-board.hostBoard .playercell {
     position: relative;
     padding: 0px;
 }
-.game-board.hostBoard .playercell img{
+
+.game-board.hostBoard .playercell img {
     object-fit: cover;
     width: 100%;
     height: 100%;
 }
-.hostConsole .bubbly-button:not(:disabled):hover{
+
+.hostConsole .bubbly-button:not(:disabled):hover {
     background-color: #3e2264;
 }
+
 /* total width */
 *::-webkit-scrollbar {
     background-color: transparent;
-    width:5px;
+    width: 5px;
 }
 
 /* background of the scrollbar except button or resizer */
@@ -1585,7 +1603,7 @@ button:disabled {
 /* scrollbar itself */
 *::-webkit-scrollbar-thumb {
     background-color: #5a3d77;
-    border-radius:20px;
+    border-radius: 20px;
 }
 
 /* set button(top and bottom of the scrollbar) */
@@ -1597,39 +1615,44 @@ button:disabled {
     max-height: 160px;
     max-width: 115px;
 }
+
 /* responsive */
 
-@media (min-width: 1500px) {    
-    .host-container{
+@media (min-width: 1500px) {
+    .host-container {
         max-width: 77vw;
-    }  
-}  
+    }
+}
 
-@media(min-width: 1600px) {    
-    .hostConsole{
+@media(min-width: 1600px) {
+    .hostConsole {
         margin-top: 1.5rem;
     }
+
     .game-board.hostBoard .left {
         max-width: 320px;
         flex: 0 0 320px;
     }
-} 
+}
 
 @media screen and (max-width: 1400px) {
     .host-container {
         max-width: calc(100% - 40px);
     }
+
     .game-board.hostBoard .left {
         max-width: 450px;
         flex: 0 0 450px;
         flex-wrap: wrap;
     }
-    .game-board.hostBoard .mid-section{
+
+    .game-board.hostBoard .mid-section {
         display: flex;
         justify-content: space-between;
-        margin-top: auto ;
+        margin-top: auto;
     }
-    .game-board.hostBoard .mid-section > div{        
+
+    .game-board.hostBoard .mid-section>div {
         margin-top: 0 !important;
         margin-bottom: 0;
     }

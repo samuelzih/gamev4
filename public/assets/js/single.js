@@ -4,6 +4,7 @@ Array.prototype.remove = function (from, to) {
 	this.length = from < 0 ? this.length + from : from;
 	return this.push.apply(this, rest);
 };
+
 jQuery(
 	(function ($) {
 		"use strict";
@@ -24,18 +25,8 @@ jQuery(
 			players: [],
 			gameSound: [],
 			gameStart: false,
-			selectCards: Array(3)
-				.fill(0)
-				.map(function () {
-					return Array(3)
-						.fill(0)
-						.map(function () {
-							return {
-								state: 0,
-								card: 0,
-							};
-						});
-				}),
+			gameStyle: 4,
+			selectCards: [],
 			drawCards: [],
 			shuffleIndex: 0,
 			shuffleTime: "",
@@ -130,14 +121,14 @@ jQuery(
 
 		let init = new Preloader({
 			images: initCard,
-			onProgress: function (current, outOf, percentage) {},
-			onComplete: function (assets, amount, time) {},
+			onProgress: function (current, outOf, percentage) { },
+			onComplete: function (assets, amount, time) { },
 		});
 		init.load();
 		var IO = {
 			init: function () {
 				// IO.socket = io('http://ec2-35-170-246-227.compute-1.amazonaws.com:3000/');
-				IO.socket = io("http://54.163.160.115:3000/");
+				IO.socket = io.connect(window.location.origin);
 				IO.bindEvents();
 			},
 			bindEvents: function () {
@@ -155,7 +146,7 @@ jQuery(
 				});
 			},
 
-			onConnected: function (cards, duration, gameName, gameSlug) {
+			onConnected: function (cards, duration, gameName, gameSlug, gameStyle) {
 				$("#gamePreloader").find(".progress-data").html(``);
 				$("#gamePreloader").find(".progress-bar").css("width", "0%");
 				gameObject.gameOver = false;
@@ -168,6 +159,19 @@ jQuery(
 				gameObject.duration = duration;
 				gameObject.card = cards;
 				gameObject.gameSlug = gameSlug;
+				gameObject.gameStyle = gameStyle;
+				gameObject.selectCards = Array(gameStyle)
+					.fill(0)
+					.map(function () {
+						return Array(gameStyle)
+							.fill(0)
+							.map(function () {
+								return {
+									state: 0,
+									card: 0,
+								};
+							});
+					})
 				if (gameObject.gameName && gameObject.duration) {
 					console.log(
 						"gameobject assigned for %s with card length %s",
@@ -295,7 +299,7 @@ jQuery(
 				App.$doc
 					.find(".winPattern")
 					.html(
-						`<img src="${gameObject.winCron?.url}" alt="${gameObject.winCron?.value}">`
+						`<img src="${gameObject.winCron['url_' + gameObject.gameStyle]}" alt="${gameObject.winCron?.value}">`
 					);
 				//
 				setTimeout(() => {
@@ -313,10 +317,7 @@ jQuery(
 			},
 			startGame: function () {
 				$("body").append('<div id="show-couter">3</div>');
-				$("#board table .game-cell").css(
-					"height",
-					Math.floor((window.innerHeight - 110) / 4)
-				);
+				App.$doc.find("#board table .matrix__cell .game-cell").css("height", Math.floor((window.innerHeight - 110) / gameObject.gameStyle))
 				let sec = 3;
 				const timer = setInterval(() => {
 					App.$doc.find("#show-couter").html(--sec);
@@ -330,9 +331,9 @@ jQuery(
 			matrixBoard: () => {
 				let str = "<table class='table'>";
 				const cards = Array.from(gameObject.card);
-				for (let row = 0; row < 3; row++) {
+				for (let row = 0; row < gameObject.gameStyle; row++) {
 					str += "<tr>";
-					for (let col = 0; col < 3; col++) {
+					for (let col = 0; col < gameObject.gameStyle; col++) {
 						let randNum = Math.floor(Math.random() * cards.length);
 						let numArray = cards[randNum];
 						cards.remove(randNum);
@@ -347,6 +348,7 @@ jQuery(
 				}
 				str += "</table>";
 				App.$doc.find("#board").html(str);
+				App.$doc.find("#board table .matrix__cell .game-cell").css("height", Math.floor((window.innerHeight - 110) / gameObject.gameStyle))
 			},
 
 			firstSlide: () => {
@@ -378,7 +380,7 @@ jQuery(
 								complete: function () {
 									if (
 										gameObject.gameSound[
-											gameObject.drawCards[gameObject.drawCards.length - 1]
+										gameObject.drawCards[gameObject.drawCards.length - 1]
 										]
 									) {
 										gameObject.unLoadSound(
@@ -386,6 +388,9 @@ jQuery(
 										);
 									}
 									clearInterval(interval);
+									App.$doc
+										.find("#suffleCard .cardImg")
+										.css({ "background-image": "url(" + initCard.g + ")" })
 									IO.socket.emit("GameOver", gameObject.gameId);
 								},
 							}
@@ -399,7 +404,7 @@ jQuery(
 				if (!card) {
 					console.log(gameObject.card, cardId, gameObject.shuffleCards);
 				}
-				console.log(gameObject.duration);
+				// console.log(gameObject.duration);
 				$(".shuffle_progress div").animate(
 					{ width: "100%" },
 					{
@@ -477,22 +482,36 @@ jQuery(
 			},
 			matchPattern: (a, b, c) => {
 				if (0 == c) {
-					return App.matchRowCol(a, b);
+					if (gameObject.gameStyle === 3) {
+						return App.match3RowCol(a, b);
+					} else {
+						return App.matchRowCol(a, b);
+					}
 				}
-
 				// matchCorner
 				else if (2 == c) {
-					return App.matchCorner(a, b);
+					if (gameObject.gameStyle === 3) {
+						return App.match3Corner(a, b);
+					} else {
+						return App.matchCorner(a, b);
+					}
 				}
-
 				// matchCenter
 				else if (3 == c) {
-					return App.matchCenter(a, b);
+					if (gameObject.gameStyle === 3) {
+						return App.match3Center(a, b);
+					} else {
+						return App.matchCenter(a, b);
+					}
 				}
 
 				// matchDiagonal
 				else if (4 == c) {
-					return App.matchDiagonal(a, b);
+					if (gameObject.gameStyle === 3) {
+						return App.match3Diagonal(a, b);
+					} else {
+						return App.matchDiagonal(a, b);
+					}
 				} else {
 					return null;
 				}
@@ -513,12 +532,12 @@ jQuery(
 								row: i,
 								col: 2,
 							},
-							// {
-							// 	row: i,
-							// 	col: 3,
-							// },
+							{
+								row: i,
+								col: 3,
+							},
 						]),
-						App.checkLoteria(d, a, b))
+							App.checkLoteria(d, a, b))
 					) {
 						return d;
 					} else {
@@ -535,10 +554,51 @@ jQuery(
 								row: 2,
 								col: i,
 							},
-							// {
-							// 	row: 3,
-							// 	col: i,
-							// },
+							{
+								row: 3,
+								col: i,
+							},
+						];
+						if (App.checkLoteria(d, a, b)) {
+							return d;
+						}
+					}
+				}
+			},
+			match3RowCol: (a, b) => {
+				for (let i = 0; i < a.length; i++) {
+					if (
+						((d = [
+							{
+								row: i,
+								col: 0,
+							},
+							{
+								row: i,
+								col: 1,
+							},
+							{
+								row: i,
+								col: 2,
+							}
+						]),
+							App.checkLoteria(d, a, b))
+					) {
+						return d;
+					} else {
+						var d = [
+							{
+								row: 0,
+								col: i,
+							},
+							{
+								row: 1,
+								col: i,
+							},
+							{
+								row: 2,
+								col: i,
+							}
 						];
 						if (App.checkLoteria(d, a, b)) {
 							return d;
@@ -555,20 +615,20 @@ jQuery(
 					return b
 						? b.call(a)
 						: {
-								next: aa(a),
-						  };
+							next: aa(a),
+						};
 				}
 				function aa(a) {
 					var b = 0;
 					return function () {
 						return b < a.length
 							? {
-									done: !1,
-									value: a[b++],
-							  }
+								done: !1,
+								value: a[b++],
+							}
 							: {
-									done: !0,
-							  };
+								done: !0,
+							};
 					};
 				}
 				for (let g = p([0, 2]), d = g.next(); !d.done; d = g.next()) {
@@ -599,25 +659,48 @@ jQuery(
 					}
 				}
 			},
+			match3Corner: (a, b) => {
+				let arr = [
+					{
+						row: 0,
+						col: 0,
+					},
+					{
+						row: 0,
+						col: 2,
+					},
+					{
+						row: 2,
+						col: 0,
+					},
+					{
+						row: 2,
+						col: 2,
+					},
+				];
+				if (App.checkLoteria(arr, a, b)) {
+					return arr;
+				}
+			},
 			matchCenter: (a, b) => {
-				// changed 3x3
+
 				let d = [
-					// {
-					// 	row: 1,
-					// 	col: 1,
-					// },
-					// {
-					// 	row: 2,
-					// 	col: 1,
-					// },
-					// {
-					// 	row: 2,
-					// 	col: 2,
-					// },
-					// {
-					// 	row: 1,
-					// 	col: 2,
-					// },
+					{
+						row: 1,
+						col: 1,
+					},
+					{
+						row: 2,
+						col: 1,
+					},
+					{
+						row: 2,
+						col: 2,
+					},
+					{
+						row: 1,
+						col: 2,
+					},
 					{
 						row: 2,
 						col: 0,
@@ -630,10 +713,10 @@ jQuery(
 						row: 2,
 						col: 2,
 					},
-					// {
-					// 	row: 3,
-					// 	col: 3,
-					// },
+					{
+						row: 3,
+						col: 3,
+					},
 					{
 						row: 1,
 						col: 2,
@@ -642,10 +725,10 @@ jQuery(
 						row: 0,
 						col: 2,
 					},
-					// {
-					// 	row: 0,
-					// 	col: 3,
-					// },
+					{
+						row: 0,
+						col: 3,
+					},
 					{
 						row: 0,
 						col: 1,
@@ -654,10 +737,10 @@ jQuery(
 						row: 0,
 						col: 0,
 					},
-					// {
-					// 	row: 0,
-					// 	col: 0,
-					// },
+					{
+						row: 0,
+						col: 0,
+					},
 					{
 						row: 1,
 						col: 0,
@@ -670,7 +753,7 @@ jQuery(
 				if (App.checkLoteria(d, a, b)) {
 					return d;
 				}
-				// changed 3x3
+
 				let f = [
 					{
 						row: 2,
@@ -684,10 +767,10 @@ jQuery(
 						row: 2,
 						col: 2,
 					},
-					// {
-					// 	row: 3,
-					// 	col: 3,
-					// },
+					{
+						row: 3,
+						col: 3,
+					},
 					{
 						row: 1,
 						col: 2,
@@ -696,10 +779,10 @@ jQuery(
 						row: 0,
 						col: 2,
 					},
-					// {
-					// 	row: 0,
-					// 	col: 3,
-					// },
+					{
+						row: 0,
+						col: 3,
+					},
 					{
 						row: 0,
 						col: 1,
@@ -708,10 +791,10 @@ jQuery(
 						row: 0,
 						col: 0,
 					},
-					// {
-					// 	row: 0,
-					// 	col: 0,
-					// },
+					{
+						row: 0,
+						col: 0,
+					},
 					{
 						row: 1,
 						col: 0,
@@ -723,6 +806,49 @@ jQuery(
 				];
 				if (App.checkLoteria(f, a, b)) {
 					return f;
+				}
+			},
+			match3Center: (a, b) => {
+				let d = [
+					{
+						row: 0,
+						col: 0,
+					},
+					{
+						row: 0,
+						col: 1,
+					},
+					{
+						row: 0,
+						col: 2,
+					},
+					{
+						row: 1,
+						col: 0,
+					},
+					{
+						row: 1,
+						col: 1,
+					},
+					{
+						row: 1,
+						col: 2,
+					},
+					{
+						row: 2,
+						col: 0,
+					},
+					{
+						row: 2,
+						col: 1,
+					},
+					{
+						row: 2,
+						col: 2,
+					}
+				];
+				if (App.checkLoteria(d, a, b)) {
+					return d;
 				}
 			},
 			matchDiagonal: (a, b) => {
@@ -740,10 +866,10 @@ jQuery(
 						row: 2,
 						col: 2,
 					},
-					// {
-					// 	row: 3,
-					// 	col: 3,
-					// },
+					{
+						row: 3,
+						col: 3,
+					},
 				];
 				if (App.checkLoteria(d, a, b)) {
 					return d;
@@ -761,10 +887,47 @@ jQuery(
 						row: 0,
 						col: 2,
 					},
-					// {
-					// 	row: 3,
-					// 	col: 0,
-					// },
+					{
+						row: 3,
+						col: 0,
+					},
+				];
+				if (App.checkLoteria(f, a, b)) {
+					return f;
+				}
+			},
+			match3Diagonal: (a, b) => {
+				// changes 3x3
+				let d = [
+					{
+						row: 0,
+						col: 0,
+					},
+					{
+						row: 1,
+						col: 1,
+					},
+					{
+						row: 2,
+						col: 2,
+					}
+				];
+				if (App.checkLoteria(d, a, b)) {
+					return d;
+				}
+				let f = [
+					{
+						row: 0,
+						col: 2,
+					},
+					{
+						row: 1,
+						col: 1,
+					},
+					{
+						row: 2,
+						col: 0,
+					}
 				];
 				if (App.checkLoteria(f, a, b)) {
 					return f;
@@ -775,7 +938,7 @@ jQuery(
 				return a.reduce(function (d, e) {
 					d &&
 						((e = b[e.row][e.col]),
-						(d = 1 == e.state && -1 != c.indexOf(e.card)));
+							(d = 1 == e.state && -1 != c.indexOf(e.card)));
 					return d;
 				}, !0);
 			},
@@ -835,5 +998,11 @@ jQuery(
 
 		IO.init();
 		App.init();
+		$(window).on('resize', function () {
+			let $board = $("#board");
+			if ($board) {
+				App.$doc.find("#board table .matrix__cell .game-cell").css("height", Math.floor((window.innerHeight - 110) / gameObject.gameStyle))
+			}
+		})
 	})($)
 );

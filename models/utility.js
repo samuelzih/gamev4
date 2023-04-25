@@ -28,6 +28,7 @@ class Utility {
         this.playerLimit = 1;
         this.started = false;
         this.players = [];
+        this.gameStyle = 4;
     }
 
     // assign game slug
@@ -35,16 +36,16 @@ class Utility {
         this.gameSlug = slug;
     }
 
-    getGameSlug(){
+    getGameSlug() {
         return this.gameSlug;
     }
 
     // game type
-    setGameType(data){
+    setGameType(data) {
         this.gameType = data;
     }
 
-    getGameType(){
+    getGameType() {
         return this.gameType;
     }
     // game Name
@@ -56,15 +57,15 @@ class Utility {
         return this.gameName;
     }
     // duration
-    setDuration(duration){
+    setDuration(duration) {
         this.duration = duration;
     }
 
-    getDuration(){
+    getDuration() {
         return this.duration;
     }
     // game id
-    getGameID(){
+    getGameID() {
         return this.gameId;
     }
     // set host socket id 
@@ -102,10 +103,10 @@ class Utility {
     }
 
     // set card
-    setCards(cards){
+    setCards(cards) {
         this.cards = cards;
     }
-    getCards(){
+    getCards() {
         return this.cards;
     }
     // add player
@@ -114,15 +115,20 @@ class Utility {
     }
     // check game type 
     isSingle() {
-        return this.gameType.toLowerCase() === "single";
+        return this.gameType?.toLowerCase() === "single";
     }
     isMultiple() {
-        return this.gameType.toLowerCase() === "multiple";
+        return this.gameType?.toLowerCase() === "multiple";
     }
     isClassroom() {
-        return this.gameType.toLowerCase() === "classroom";
+        return this.gameType?.toLowerCase() === "classroom";
     }
-    
+    setGameStyle(data) {
+        this.gameStyle = data;
+    }
+    getGameStyle() {
+       return this.gameStyle;
+    }
     // send game card data 
     async setGameCards(gameSlug) {
         this.setGameSlug(gameSlug);
@@ -132,14 +138,15 @@ class Utility {
             this.setGameName(data?.name);
             this.setCards(data?.card);
             this.setShuffleCard(data?.card);
-            this.gameSocket.emit('connected', data?.card, data?.card_flip_interval_in_ms * 1000, data?.name, gameSlug);
-        } if(error){
+            this.setGameStyle(4);
+            this.gameSocket.emit('connected', data?.card, data?.card_flip_interval_in_ms * 1000, data?.name, gameSlug, this.getGameStyle());
+        } if (error) {
             this.io.to(this.gameSocket.id).emit("error", { message: error });
         }
-            
+
     }
 
-    async onGameCreatedWithURL(url, gameData, socket, io){
+    async onGameCreatedWithURL(url, gameData, socket, io) {
         const { data, error } = await gameCard.getShareURL(url);
         if (data) {
             socket.emit("newGameCreated", {
@@ -151,8 +158,8 @@ class Utility {
                 "winCron": gameData?.winCon,
             });
             socket.join(gameData?.gameId.toString());
-        } 
-        if(error){
+        }
+        if (error) {
             io.to(socket.id).emit("error", { message: error });
         }
     }
@@ -162,17 +169,18 @@ class Utility {
         var loteria = this;
         var gameList = function () {
             this.cards = loteria.cards;
-            this.duration = loteria.duration;           
+            this.duration = loteria.duration;
             this.gameName = loteria.gameName;
-            this.gameSlug = loteria.gameSlug;            
+            this.gameSlug = loteria.gameSlug;
             this.gameType = loteria.gameType;
             this.gameId = loteria.gameId;
             this.hostID = loteria.hostID;
-            this.started = loteria.started;           
+            this.started = loteria.started;
             this.winCron = loteria.winCron;
             this.shuffleCard = loteria.shuffleCard;
             this.playerLimit = loteria.playerLimit;
             this.players = loteria.players;
+            this.gameStyle= loteria.gameStyle
         };
         return new gameList();
     }
@@ -187,7 +195,7 @@ class Utility {
         }
         return player;
     }
-    
+
 };
 
 

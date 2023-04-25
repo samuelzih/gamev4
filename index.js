@@ -36,6 +36,7 @@ var server = require("http")
 	.createServer(app)
 	.listen(process.env.PORT || 3000, () => {
 		var port = server.address()?.port;
+		// console.log(server);
 		console.log(`Server is running on portzznew ` + port);
 	});
 

@@ -3,11 +3,11 @@ var _ = require("lodash");
 var Utility = require("../models/utility");
 var gameCard = require("../game/gameCard");
 const winPattern = require("../game/wincron.json");
-function nullMatrix4X4() {
-	let matrix__cell = Array(3)
+function nullMatrix(number) {
+	let matrix__cell = Array(number)
 		.fill(0)
 		.map(function () {
-			return Array(3)
+			return Array(number)
 				.fill(0)
 				.map(function () {
 					return {
@@ -48,8 +48,10 @@ exports.initGame = function (sio, socket) {
 			hostData["gameName"] = utility.getGameName();
 			hostData["gameSlug"] = utility.getGameSlug();
 			hostData["duration"] = utility.getDuration();
+			hostData["gameStyle"] = utility.getGameStyle(); // 3 = 3X3; 4 = 4X4
 			utility.onGameCreatedWithURL(hostData["url"], hostData, socket, sio);
 			gameList[gameID] = utility.createObject();
+			console.log(gameList[gameID])
 		}
 		// single player
 		if (utility.isSingle()) {
@@ -61,12 +63,13 @@ exports.initGame = function (sio, socket) {
 			hostData["gameName"] = utility.getGameName();
 			hostData["gameSlug"] = utility.getGameSlug();
 			hostData["duration"] = utility.getDuration();
+			hostData["gameStyle"] = utility.getGameStyle(); // 3 = 3X3; 4 = 4X4
 			var player = {
 				id: socket.id,
 				name: hostData?.playerName || "Anonymous",
 				status: false,
 				role: "player",
-				card: nullMatrix4X4(),
+				card: nullMatrix(hostData["gameStyle"]),
 				score: 0,
 				gameOver: false,
 			};
@@ -88,12 +91,13 @@ exports.initGame = function (sio, socket) {
 			hostData["gameName"] = utility.getGameName();
 			hostData["gameSlug"] = utility.getGameSlug();
 			hostData["duration"] = utility.getDuration();
+			hostData["gameStyle"] = utility.getGameStyle(); // 3 = 3X3; 4 = 4X4
 			var player = {
 				id: socket.id,
 				name: hostData?.playerName || "Anonymous",
 				status: false,
 				role: "player",
-				card: nullMatrix4X4(),
+				card: nullMatrix(hostData["gameStyle"]),
 				score: 0,
 				gameOver: false,
 			};
@@ -116,7 +120,7 @@ exports.initGame = function (sio, socket) {
 							name: playerData?.playerName || "Anonymous",
 							status: false,
 							role: "player",
-							card: nullMatrix4X4(),
+							card: nullMatrix(game.gameStyle),
 							score: 0,
 							gameOver: false,
 						};
@@ -329,6 +333,7 @@ exports.initGame = function (sio, socket) {
 		const room = socket.adapter.rooms.has(gameData?.gameId.toString());
 		if (room) {
 			const game = gameList[gameData?.gameId];
+			console.log(game);
 			game.gameSlug = gameData?.gameSlug;
 			game.winCron = winPattern.filter(
 				(item) => item.value === gameData?.winCron
@@ -341,6 +346,7 @@ exports.initGame = function (sio, socket) {
 				game.shuffleCard = Array.from(data?.card)
 					.sort(() => Math.random() - 0.5)
 					.map((s) => s.id);
+				console.log(game.gameStyle);
 				sio.sockets
 					.in(gameData?.gameId)
 					.emit(
@@ -348,7 +354,8 @@ exports.initGame = function (sio, socket) {
 						game.cards,
 						game.duration,
 						game.gameName,
-						game.gameSlug
+						game.gameSlug,
+						game.gameStyle
 					);
 				sio.sockets.in(gameData?.gameId).emit("newRGameCreated", game.winCron);
 			}

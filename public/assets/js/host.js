@@ -19,18 +19,8 @@ jQuery(
 			players: [],
 			gameSound: [],
 			gameStart: false,
-			selectCards: Array(3)
-				.fill(0)
-				.map(function () {
-					return Array(3)
-						.fill(0)
-						.map(function () {
-							return {
-								state: 0,
-								card: 0,
-							};
-						});
-				}),
+			gameStyle: 4,
+			selectCards: [],
 			drawCards: [],
 			shuffleIndex: 0,
 			gameOver: false,
@@ -133,7 +123,7 @@ jQuery(
 		var IO = {
 			init: function () {
 				// IO.socket = io('http://ec2-35-170-246-227.compute-1.amazonaws.com:3000/');
-				IO.socket = io.connect("http://54.163.160.115:3000/");
+				IO.socket = io.connect(window.location.origin);
 				IO.bindEvents();
 			},
 			bindEvents: function () {
@@ -158,7 +148,7 @@ jQuery(
 				IO.socket.on("newRGameCreated", IO.onNewGameCreated);
 			},
 
-			onConnected: function (cards, duration, gameName, gameSlug) {
+			onConnected: function (cards, duration, gameName, gameSlug, gameStyle) {
 				gameObject.gameOver = false;
 				gameObject.loader.images = {};
 				gameObject.gameAssets = {};
@@ -172,6 +162,19 @@ jQuery(
 				gameObject.duration = duration;
 				gameObject.card = cards;
 				gameObject.gameSlug = gameSlug;
+				gameObject.gameStyle = gameStyle;
+				gameObject.selectCards = Array(gameStyle)
+					.fill(0)
+					.map(function () {
+						return Array(gameStyle)
+							.fill(0)
+							.map(function () {
+								return {
+									state: 0,
+									card: 0,
+								};
+							});
+					})
 				if (gameObject.gameName && gameObject.duration) {
 					console.log(
 						"gameobject assigned for %s with card length %s",
@@ -189,6 +192,7 @@ jQuery(
 			},
 
 			onNewClassGameCreated: function (data) {
+				debugger;
 				gameObject.gameId = data?.gameId;
 				gameObject.winCron = data?.winCron;
 				App.$doc.find("#roomNumber").text(data?.gameId);
@@ -201,7 +205,7 @@ jQuery(
 				App.$doc
 					.find("#gameBoard .winPattern")
 					.html(
-						`<img src="${data?.winCron.url}" alt="${data?.winCron.value}">`
+						`<img src="${gameObject.winCron['url_' + gameObject.gameStyle]}" alt="${gameObject.winCron?.value}">`
 					);
 				setTimeout(() => {
 					App.$doc.find(".full-grid").addClass("h-100 place-content-normal");
@@ -302,7 +306,7 @@ jQuery(
 				App.$doc.find("#gameBoard .patternName").text(winCron?.value);
 				App.$doc
 					.find("#gameBoard .winPattern")
-					.html(`<img src="${winCron.url}" alt="${winCron.value}">`);
+					.html(`<img src="${gameObject.winCron['url_' + gameObject.gameStyle]}" alt="${gameObject.winCron?.value}">`);
 				App.playersCardOpoenent();
 				App.$doc.find("#currentCard").attr("src", initCard["g"]);
 				App.$doc.find("#drawBtn").slideUp();
@@ -421,12 +425,12 @@ jQuery(
 						opponent.setAttribute("class", "player text-center");
 						opponentName.setAttribute("class", "player_span text-white");
 						opponentName.textContent = el?.name;
-						for (let j = 0; j < 3; j++) {
+						for (let j = 0; j < gameObject.gameStyle; j++) {
 							let cellJ = cell.cloneNode();
 							cellJ.innerHTML = `<img src="${assets}" alt="">`;
 							row.appendChild(cellJ);
 						}
-						for (let r = 0; r < 3; r++) {
+						for (let r = 0; r < gameObject.gameStyle; r++) {
 							let rowR = row.cloneNode("true");
 							opponentTable.appendChild(rowR);
 						}
