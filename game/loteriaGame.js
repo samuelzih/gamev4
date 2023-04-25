@@ -51,7 +51,7 @@ exports.initGame = function (sio, socket) {
 			hostData["gameStyle"] = utility.getGameStyle(); // 3 = 3X3; 4 = 4X4
 			utility.onGameCreatedWithURL(hostData["url"], hostData, socket, sio);
 			gameList[gameID] = utility.createObject();
-			console.log(gameList[gameID])
+			// console.log(gameList[gameID])
 		}
 		// single player
 		if (utility.isSingle()) {
@@ -333,7 +333,7 @@ exports.initGame = function (sio, socket) {
 		const room = socket.adapter.rooms.has(gameData?.gameId.toString());
 		if (room) {
 			const game = gameList[gameData?.gameId];
-			console.log(game);
+			// console.log(game);
 			game.gameSlug = gameData?.gameSlug;
 			game.winCron = winPattern.filter(
 				(item) => item.value === gameData?.winCron
@@ -346,7 +346,7 @@ exports.initGame = function (sio, socket) {
 				game.shuffleCard = Array.from(data?.card)
 					.sort(() => Math.random() - 0.5)
 					.map((s) => s.id);
-				console.log(game.gameStyle);
+				// console.log(game.gameStyle);
 				sio.sockets
 					.in(gameData?.gameId)
 					.emit(
