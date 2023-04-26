@@ -1336,6 +1336,11 @@ button:disabled {
     border-color: #281445;
 }
 
+.winnerModal .radio .label-container .winPattern img {
+    width: 110px;
+    height: 150px;
+}
+
 .selectWinPattern .how-to-win {
     padding: 20px;
 }

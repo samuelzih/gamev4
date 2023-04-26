@@ -347,6 +347,7 @@ exports.initGame = function (sio, socket) {
 					.sort(() => Math.random() - 0.5)
 					.map((s) => s.id);
 				// console.log(game.gameStyle);
+				game.gameStyle = data?.layout;
 				sio.sockets
 					.in(gameData?.gameId)
 					.emit(

@@ -138,7 +138,7 @@ class Utility {
             this.setGameName(data?.name);
             this.setCards(data?.card);
             this.setShuffleCard(data?.card);
-            this.setGameStyle(3);
+            this.setGameStyle(data?.layout);
             this.gameSocket.emit('connected', data?.card, data?.card_flip_interval_in_ms * 1000, data?.name, gameSlug, this.getGameStyle());
         } if (error) {
             this.io.to(this.gameSocket.id).emit("error", { message: error });

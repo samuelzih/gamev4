@@ -537,6 +537,11 @@ jQuery(
 				if (
 					App.$doc.find("#replayGameForm input[name=gameSlug]:checked").val()
 				) {
+					App.$doc.find("#img_row1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_1.svg`);
+					App.$doc.find("#img_corner1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_3.svg`);
+					App.$doc.find("#img_center1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_4.svg`);
+					App.$doc.find("#img_diagonal1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_5.svg`);
+					gameObject.gameStyle = App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout');
 					App.$doc.find("#gamelist").slideUp();
 					App.$doc.find("#newGameWinCon").slideDown();
 					$(event.target).removeClass("loading").prop("disabled", false);
