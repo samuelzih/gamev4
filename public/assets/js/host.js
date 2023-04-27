@@ -162,7 +162,7 @@ jQuery(
 				gameObject.duration = duration;
 				gameObject.card = cards;
 				gameObject.gameSlug = gameSlug;
-				gameObject.gameStyle = gameStyle;
+				gameObject.gameStyle = parseInt(gameStyle);
 				gameObject.selectCards = Array(gameStyle)
 					.fill(0)
 					.map(function () {
@@ -541,7 +541,7 @@ jQuery(
 					App.$doc.find("#img_corner1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_3.svg`);
 					App.$doc.find("#img_center1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_4.svg`);
 					App.$doc.find("#img_diagonal1").attr('src', `/assets/img/wincon${App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout')}_5.svg`);
-					gameObject.gameStyle = App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout');
+					gameObject.gameStyle = parseInt(App.$doc.find("#replayGameForm input[name=gameSlug]:checked").data('layout'));
 					App.$doc.find("#gamelist").slideUp();
 					App.$doc.find("#newGameWinCon").slideDown();
 					$(event.target).removeClass("loading").prop("disabled", false);

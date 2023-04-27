@@ -184,7 +184,7 @@ jQuery(
 				gameObject.duration = duration;
 				gameObject.card = cards;
 				gameObject.gameSlug = gameSlug;
-				gameObject.gameStyle = gameStyle;
+				gameObject.gameStyle = parseInt(gameStyle);
 				gameObject.selectCards = Array(gameStyle)
 					.fill(0)
 					.map(function () {
@@ -500,11 +500,11 @@ jQuery(
 						opponent.setAttribute("class", "player text-center");
 						opponentName.setAttribute("class", "player_span text-white");
 						opponentName.textContent = el?.name;
-						for (let j = 0; j < 4; j++) {
+						for (let j = 0; j < gameObject.gameStyle; j++) {
 							let cellJ = cell.cloneNode();
 							row.appendChild(cellJ);
 						}
-						for (let r = 0; r < 4; r++) {
+						for (let r = 0; r < gameObject.gameStyle; r++) {
 							let rowR = row.cloneNode("true");
 							opponentTable.appendChild(rowR);
 						}
@@ -1027,24 +1027,20 @@ jQuery(
 				}
 			},
 			matchDiagonal: (a, b) => {
-				// changes 3x3
 				let d = [
 					{
 						row: 0,
-						col: 0,
-					},
-					{
+						col: 0
+					}, {
 						row: 1,
-						col: 1,
-					},
-					{
+						col: 1
+					}, {
 						row: 2,
-						col: 2,
-					},
-					{
+						col: 2
+					}, {
 						row: 3,
-						col: 3,
-					},
+						col: 3
+					}
 				];
 				if (App.checkLoteria(d, a, b)) {
 					return d;
@@ -1052,20 +1048,17 @@ jQuery(
 				let f = [
 					{
 						row: 0,
-						col: 2,
-					},
-					{
+						col: 3
+					}, {
 						row: 1,
-						col: 1,
-					},
-					{
-						row: 0,
-						col: 2,
-					},
-					{
+						col: 2
+					}, {
+						row: 2,
+						col: 1
+					}, {
 						row: 3,
-						col: 0,
-					},
+						col: 0
+					}
 				];
 				if (App.checkLoteria(f, a, b)) {
 					return f;

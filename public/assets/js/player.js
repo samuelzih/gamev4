@@ -182,7 +182,7 @@ jQuery(
 				gameObject.duration = duration;
 				gameObject.card = cards;
 				gameObject.gameSlug = gameSlug;
-				gameObject.gameStyle = gameStyle;
+				gameObject.gameStyle = parseInt(gameStyle);
 				gameObject.selectCards = Array(gameStyle)
 					.fill(0)
 					.map(function () {
@@ -907,24 +907,20 @@ jQuery(
 				}
 			},
 			matchDiagonal: (a, b) => {
-				// changes 3x3
 				let d = [
 					{
 						row: 0,
-						col: 0,
-					},
-					{
+						col: 0
+					}, {
 						row: 1,
-						col: 1,
-					},
-					{
+						col: 1
+					}, {
 						row: 2,
-						col: 2,
-					},
-					{
+						col: 2
+					}, {
 						row: 3,
-						col: 3,
-					},
+						col: 3
+					}
 				];
 				if (App.checkLoteria(d, a, b)) {
 					return d;
@@ -932,20 +928,17 @@ jQuery(
 				let f = [
 					{
 						row: 0,
-						col: 2,
-					},
-					{
+						col: 3
+					}, {
 						row: 1,
-						col: 1,
-					},
-					{
-						row: 0,
-						col: 2,
-					},
-					{
+						col: 2
+					}, {
+						row: 2,
+						col: 1
+					}, {
 						row: 3,
-						col: 0,
-					},
+						col: 0
+					}
 				];
 				if (App.checkLoteria(f, a, b)) {
 					return f;
